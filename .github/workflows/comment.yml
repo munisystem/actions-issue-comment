@@ -1,0 +1,23 @@
+name: Comment to Issue
+
+on:
+  issue_comment: 
+    types: [created]
+
+jobs:
+  comment_on_issue:
+    runs-on: ubuntu-latest
+    steps:
+      - id: date
+        run: |
+          d=$(date '+%m%d' -d '1 days')
+          d="## ${d}"
+          echo ::set-output name=date::$d
+      - uses: simpleactions/create-issue-comment@v1.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          issue_number: ${{ github.event.issue.number }}
+          body: |
+            ${{ steps.date.output.date }}
+
+            Hi

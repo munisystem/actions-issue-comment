@@ -10,7 +10,7 @@ jobs:
     steps:
       - id: date
         run: |
-          d=$(date '+%m%d' -d '1 days')
+          d=$(date '+%m/%d' -d '1 days')
           echo $d
           d="## ${d}"
           echo $d
@@ -20,6 +20,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           issue_number: ${{ github.event.issue.number }}
           body: |
-            ${{ steps.date.output.date }}
+            ${{ steps.date.outputs.date }}
 
             Hi

@@ -11,7 +11,9 @@ jobs:
       - id: date
         run: |
           d=$(date '+%m%d' -d '1 days')
+          echo $d
           d="## ${d}"
+          echo $d
           echo ::set-output name=date::$d
       - uses: simpleactions/create-issue-comment@v1.0.0
         with:
